@@ -1,0 +1,43 @@
+button(ng-click='resetCycle()') Reset
+img(alt='Stream', src='http://ohra.dy.fi:8080/?action=stream', width='1280', height='720')
+table.table.maintable
+  tr
+    td
+      table.table.table-striped
+        thead
+          tr
+            th {{runs.length}} pending
+            th Name
+            th Date
+            th
+        tbody
+          tr(ng-repeat='run in runs')
+            td
+            td
+              {{run.name}}
+            td
+              {{run.date | date: 'dd.MM.yyyy HH:mm'}}
+            td
+              a(href='editRun/{{run.id}}') Edit
+              |  - 
+              a(href='deleteRun/{{run.id}}') Delete
+      
+    td
+      table.table.table-striped
+        thead
+          tr
+            th {{runsDone.length}} finished
+            th Name
+            th Date
+            th
+        tbody
+          tr(ng-repeat='run in runsDone')
+            td
+            td
+              {{run.name}}
+            td
+              {{run.date | date: 'dd.MM.yyyy HH:mm'}}
+            td
+              a(href='editRun/{{run.id}}') Edit
+              |  - 
+              a(href='deleteRun/{{run.id}}') Delete

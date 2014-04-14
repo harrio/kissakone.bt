@@ -1,0 +1,9 @@
+h2 Edit run
+label(for='name') Name: 
+input(ng-model='form.name', name='name')
+label(for='date') Date:
+input(ng-model="form.date", name='date', ui-date="{ dateFormat: 'dd.mm.yy' }")
+label(for='time') Time: 
+input(ng-model='form.time', name='time')
+p
+  button(ng-click='editRun()') Edit Run
