@@ -110,13 +110,13 @@ var closePort = function () {
 };
 
 function shift(req, res) {
-    sendToPort(mac, 2);
+    sendToPort(mac, '2');
     res.send("Ok");
 }
 exports.shift = shift;
 
 function serve() {
-    sendToPort(mac, 1);
+    sendToPort(mac, '1');
 }
 exports.serve = serve;
 
