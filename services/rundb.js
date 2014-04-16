@@ -1,5 +1,3 @@
-///<reference path='../node/underscore.d.ts' />
-///<reference path='../node/Q.d.ts' />
 var q = require('q');
 var jf = require('./jsonfile');
 var _ = require('underscore');
@@ -20,7 +18,6 @@ function findById(id) {
     });
 }
 exports.findById = findById;
-;
 
 var filterRuns = function (done) {
     return function (runs) {
@@ -40,21 +37,18 @@ function findAll() {
     return promise;
 }
 exports.findAll = findAll;
-;
 
 function findAllUndone() {
     var promise = jf.readFile(FILE);
     return promise.then(filterRuns(false));
 }
 exports.findAllUndone = findAllUndone;
-;
 
 function findAllDone() {
     var promise = jf.readFile(FILE);
     return promise.then(filterRuns(true));
 }
 exports.findAllDone = findAllDone;
-;
 
 function findBeforeDate(querydate) {
     console.log("Find before: " + querydate);
@@ -71,7 +65,6 @@ function findBeforeDate(querydate) {
     });
 }
 exports.findBeforeDate = findBeforeDate;
-;
 
 function addRun(run) {
     delete run.time;
@@ -94,7 +87,6 @@ function addRun(run) {
     });
 }
 exports.addRun = addRun;
-;
 
 function updateRun(id, run) {
     delete run.time;
@@ -113,7 +105,6 @@ function updateRun(id, run) {
     });
 }
 exports.updateRun = updateRun;
-;
 
 function deleteRun(id) {
     console.log('Deleting run: ' + id);
@@ -130,5 +121,4 @@ function deleteRun(id) {
     });
 }
 exports.deleteRun = deleteRun;
-;
 

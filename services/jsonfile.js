@@ -1,4 +1,3 @@
-///<reference path='../node/Q.d.ts' />
 var fs = require('fs');
 var q = require('q');
 
@@ -18,7 +17,6 @@ function readFile(file) {
     return readFileQ(file).then(parse);
 }
 exports.readFile = readFile;
-;
 
 var writeFileQ = q.nfbind(fs.writeFile);
 
@@ -31,11 +29,9 @@ function writeFile(file, obj) {
     return writeFileQ(file, stringify(obj));
 }
 exports.writeFile = writeFile;
-;
 
 function readFileSync(file) {
     return JSON.parse(fs.readFileSync(file, 'utf8'));
 }
 exports.readFileSync = readFileSync;
-;
 

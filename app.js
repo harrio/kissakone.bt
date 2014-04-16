@@ -11,7 +11,6 @@ var routes = require('./routes/index');
 var everyauth = require('everyauth');
 var http = require('http');
 var path = require('path');
-var gpio = require("./services/gpio");
 var api = require("./routes/api");
 var rundb = require("./services/rundb");
 var jf = require("./services/jsonfile");
@@ -136,7 +135,7 @@ app.configure('development', function () {
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
-app.post('/gpioOn', api.resetCycle);
+app.post('/gpioOn', api.shift);
 
 app.get('/api/runs', api.findAllUndone);
 app.get('/api/runsDone', api.findAllDone);
@@ -145,12 +144,6 @@ app.post('/api/run', api.addRun);
 app.put('/api/run/:id', api.updateRun);
 app.delete('/api/run/:id', api.deleteRun);
 
-//app.get('/gallery*', function(req, res){
-// We automatically have the gallery data available to us in req thanks to middleware
-//var data = req.gallery;
-// and we can res.render using one of the supplied templates (photo.ejs/album.ejs) or one of our own
-//res.render(data.type + '.jade', data);
-//});
 http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));
 });
@@ -167,21 +160,7 @@ setInterval(function () {
                     console.log("debug skip");
                     return;
                 }
-
-                gpio.registerListener(function (val) {
-                    console.log("Switch off: " + val);
-                    if (val == 1) {
-                        gpio.forwardOff();
-                        gpio.unregisterListener();
-                    }
-                });
-
-                gpio.forwardOn();
-                setTimeout(function () {
-                    console.log("Timeout");
-                    gpio.forwardOff();
-                    gpio.unregisterListener();
-                }, 5000);
+                api.serve();
             });
         }
     });
