@@ -109,14 +109,28 @@ var closePort = function () {
     }
 };
 
-function shift(req, res) {
-    sendToPort(mac, '2');
-    res.send("Ok");
-}
-exports.shift = shift;
 
 function serve() {
-    sendToPort(mac, '1');
+    sendToPort(mac, '1 0');
 }
 exports.serve = serve;
+
+function shiftForward(req, res) {
+    sendToPort(mac, '2 0');
+    res.send("Ok");
+}
+exports.shiftForward = shiftForward;
+
+function shiftReverse(req, res) {
+    sendToPort(mac, '3 0');
+    res.send("Ok");
+}
+exports.shiftReverse = shiftReverse;
+
+function rotateCam(req, res) {
+    var angle = req.params.angle;
+    sendToPort(mac, '3 ' + angle);
+    res.send("Ok");
+}
+exports.rotateCam = rotateCam;
 

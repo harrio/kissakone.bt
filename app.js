@@ -135,7 +135,9 @@ app.configure('development', function () {
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
-app.post('/gpioOn', api.shift);
+app.post('/forward', api.shiftForward);
+app.post('/reverse', api.shiftReverse);
+app.post('/rotateCam', api.rotateCam);
 
 app.get('/api/runs', api.findAllUndone);
 app.get('/api/runsDone', api.findAllDone);

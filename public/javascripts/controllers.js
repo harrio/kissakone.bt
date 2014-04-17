@@ -1,4 +1,6 @@
 function IndexCtrl($scope, $http) {
+  $scope.form = {};
+
   $http.get('/api/runs').
     success(function(data, status, headers, config) {
       $scope.runs = data.runs;
@@ -7,8 +9,20 @@ function IndexCtrl($scope, $http) {
     success(function(data, status, headers, config) {
       $scope.runsDone = data.runsDone;
     });
-  $scope.resetCycle = function () {
-    $http.post('/gpioOn', $scope.form).
+  $scope.forward = function () {
+    $http.post('/forward', $scope.form).
+      success(function(data) {
+        $location.path('/');
+      });
+  };
+  $scope.reverse = function () {
+    $http.post('/reverse', $scope.form).
+      success(function(data) {
+        $location.path('/');
+      });
+  };
+  $scope.rotateCam = function () {
+    $http.post('/rotateCam', $scope.form.angle).
       success(function(data) {
         $location.path('/');
       });
