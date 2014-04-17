@@ -1,5 +1,5 @@
 function IndexCtrl($scope, $http) {
-  $scope.form = {};
+  $scope.form = { angle: 10 };
 
   $http.get('/api/runs').
     success(function(data, status, headers, config) {
@@ -22,7 +22,7 @@ function IndexCtrl($scope, $http) {
       });
   };
   $scope.rotateCam = function () {
-    $http.post('/rotateCam', $scope.form.angle).
+    $http.post('/rotateCam', $scope.form).
       success(function(data) {
         $location.path('/');
       });
