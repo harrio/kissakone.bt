@@ -158,10 +158,6 @@ setInterval(function () {
                 console.log("Marked " + run.id + " as done.");
                 console.log("Start run...");
 
-                if (config.debug) {
-                    console.log("debug skip");
-                    return;
-                }
                 api.serve();
             });
         }
