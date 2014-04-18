@@ -82,7 +82,6 @@ var sendToPort = function (addr, cmd) {
             var data = "";
 
             port.on('data', function (buffer) {
-                console.log("buffer " + buffer);
                 data += buffer.toString('utf-8');
                 var parts = data.split("\n");
                 data = parts.pop();
