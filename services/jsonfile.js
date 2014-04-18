@@ -13,7 +13,6 @@ var parse = function (data) {
 };
 
 function readFile(file) {
-    console.log("readFileQ: " + file);
     return readFileQ(file).then(parse);
 }
 exports.readFile = readFile;
