@@ -111,26 +111,26 @@ var closePort = function () {
 
 
 function serve() {
-    sendToPort(mac, "{1 0}");
+    sendToPort(mac, "serve\r");
 }
 exports.serve = serve;
 
 function shiftForward(req, res) {
-    sendToPort(mac, "{2 0}");
+    sendToPort(mac, "fwd\r");
     res.send("Ok");
 }
 exports.shiftForward = shiftForward;
 
 function shiftReverse(req, res) {
-    sendToPort(mac, "{3 0}");
+    sendToPort(mac, "rev\r");
     res.send("Ok");
 }
 exports.shiftReverse = shiftReverse;
 
 function rotateCam(req, res) {
     var angle = req.body.angle;
-    console.log("Rotete " + angle);
-    sendToPort(mac, "{4 " + angle + "}");
+    console.log("Rotate " + angle);
+    sendToPort(mac, "cam " + angle + "\r");
     res.send("Ok");
 }
 exports.rotateCam = rotateCam;
